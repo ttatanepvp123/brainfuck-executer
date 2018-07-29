@@ -1,6 +1,7 @@
 import time
 
 def brainfuck(code):
+    loopNumber = 0
     start = time.time()
     i = 0
     variable = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -32,7 +33,12 @@ def brainfuck(code):
             returner += str(variable[pointeur])
         if code[i] == "]":
             if variable[pointeur] != 0:
-                while code[i] != "[":
+                loopNumber = 1
+                while loopNumber !=0:
+                    if code[i] == "[":
+                        loopNumber -= 1
+                    elif code[i] == "]":
+                        loopNumber += 1
                     i -= 1
         i += 1
     return returner
