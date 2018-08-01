@@ -9,8 +9,9 @@ function countChar(str, Mychar) {//I do not know the function so I do it
 }
 
 function brainfuck(code) {
+    var loopNumber = 0;
     var d = new Date();
-    var start = (d.getTime() / 10)
+    var start = (d.getTime() / 10);
     var variable = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
     var pointeur = 0;
     var returner = "";
@@ -19,23 +20,23 @@ function brainfuck(code) {
     }
     for (let i = 0; i < code.length; i++) {
         if(((d.getTime() / 10) - start) > 2){
-            returner += "\nERROR : the code does not stink be finished\n your code can be wrong optimize"
-            return returner
+            returner += "\nERROR : the code does not stink be finished\n your code can be wrong optimize";
+            return returner;
         } else if(code[i] == "+"){
-            variable[pointeur] = variable[pointeur] + 1
+            variable[pointeur] = variable[pointeur] + 1;
         } else if (code[i] == "-"){
-            variable[pointeur] = variable[pointeur] - 1
+            variable[pointeur] = variable[pointeur] - 1;
         } else if (code[i] == ">"){
-            if ((pointeur + 1) > (len(variable) - 1)){
-                return "ERROR : variable limit to exceed"
+            if ((pointeur + 1) > variable.length){
+                return "ERROR : variable limit to exceed";
             } else {
-                pointeur += 1
+                pointeur += 1;
             }
         } else if (code[i] == "<"){
             if ((pointeur - 1) < 0){
-                return "ERROR : the pointer can not be below 0"
+                return "ERROR : the pointer can not be below 0";
             } else {
-                pointeur -= 1
+                pointeur -= 1;
             }
         } else if (code[i] == ".") {
             returner += String.fromCharCode(variable[pointeur]);
@@ -43,11 +44,17 @@ function brainfuck(code) {
             returner += variable[pointeur].toString();
         } else if (code[i] == "]"){
             if (variable[pointeur] != 0){
-                while (code[i] != "["){
-                    i -= 1
+                loopNumber = 1;
+                while (loopNumber != 0){
+                    i -= 1;
+                    if (code[i] == ']') {
+                        loopNumber += 1;
+                    } else if (code[i] == '[') {
+                        loopNumber -= 1;
+                    }
                 }
             }
         }
     }
-    return returner
+    return returner;
 }
