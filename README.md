@@ -1,4 +1,4 @@
-# brainfuck-executer
+# brainfuck-executor
 ### language list
 - C
 - JavaScript
