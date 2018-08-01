@@ -35,11 +35,11 @@ def brainfuck(code):
             if variable[pointeur] != 0:
                 loopNumber = 1
                 while loopNumber !=0:
+                    i -= 1
                     if code[i] == "[":
                         loopNumber -= 1
                     elif code[i] == "]":
                         loopNumber += 1
-                    i -= 1
         i += 1
     return returner
 
